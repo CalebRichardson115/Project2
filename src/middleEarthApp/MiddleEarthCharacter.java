@@ -13,4 +13,10 @@ public abstract class MiddleEarthCharacter {
 	}
 	
 	public abstract String getRace();
+	
+	public abstract Boolean attack(MiddleEarthCharacter target);
+	
+	public void displayInfo() {
+		System.out.println("Name: "+this.name+" Power: "+this.power+" HP: "+this.health+" Race: "+this.getRace());
+	}
 }
