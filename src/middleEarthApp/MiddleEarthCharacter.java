@@ -13,7 +13,7 @@ public abstract class MiddleEarthCharacter {
 	}
 	
 	public abstract String getRace();
-	
+	//May need to edit this.
 	public abstract Boolean attack(MiddleEarthCharacter target);
 	
 	public void displayInfo() {
