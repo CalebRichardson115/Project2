@@ -1,6 +1,6 @@
 package middleEarthApp;
 
-public abstract class Orc extends MiddleEarthCharacter{
+public class Orc extends MiddleEarthCharacter {
 
 	public Orc(String name, double health, double power) {
 		super(name,health,power);
@@ -9,6 +9,20 @@ public abstract class Orc extends MiddleEarthCharacter{
 	@Override
 	public String getRace() {
 		return "Orc";
+	}
+	
+	@Override
+	public Boolean attack(MiddleEarthCharacter target) {
+		if(target.getRace() == "Orc" || target.getRace() == "Elf") {
+			return false;
+		}
+		if(target.getRace() == "Human") {
+			target.health -= this.power*1.5;
+		}
+		else {
+			target.health -= this.power;
+		}
+		return true;
 	}
 
 }
