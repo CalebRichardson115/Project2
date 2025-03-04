@@ -1,10 +1,11 @@
 package middleEarthApp;
 
 public class Wizard extends MiddleEarthCharacter {
+	//Initializes a Wizard
 	public Wizard(String name, double health, double power) {
 		super(name,health,power);
 	}
-	
+	//Returns "Wizard" for the attack method and displayInfo method.
 	@Override
 	public String getRace() {
 		return "Wizard";

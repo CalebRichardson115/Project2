@@ -1,11 +1,11 @@
 package middleEarthApp;
 
 public class Elf extends MiddleEarthCharacter{
-
+	//Initializes an Elf
 	public Elf(String name, double health, double power) {
 		super(name,health,power);
 	}
-	
+	//Returns "Elf" for the attack method and displayInfo method.
 	@Override
 	public String getRace() {
 		return "Elf";

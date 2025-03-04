@@ -44,8 +44,8 @@ public class CharacterManager {
 		if(removalIndex == -1) {
 			return false;
 		}
-		//Shifts elements to the left starting at the point of removal.
-		for(int i = removalIndex; i<size;i++) {
+		//Shifts elements to the left starting at the point of removal. Will not go out of bounds due to array resizing logic.
+		for(int i = removalIndex; i < size;i++) {
 			characters[i] = characters[i+1];
 		}
 		size--;
@@ -57,7 +57,8 @@ public class CharacterManager {
 	//Searches the characters array for a matching name and then returns that character if the name matches. Returns null if that character is not in the array.
 	MiddleEarthCharacter getCharacter(String name) {
 		for(int i = 0; i < size; i++) {
-			if(characters[i].name == name) {
+			if(characters[i].name.equals(name)) {
+				System.out.println("Found");
 				return characters[i];
 			}
 		}
@@ -65,7 +66,7 @@ public class CharacterManager {
 		return null;
 	}
 	
-	boolean updateCharacter(MiddleEarthCharacter character, String name, double d, double e) {
+	boolean updateCharacter(MiddleEarthCharacter character, String name, double health, double power) {
 		int charIndex = -1;
 		for(int i = 0; i < size;i++) {
 			if(character == characters[i]) {
@@ -78,8 +79,8 @@ public class CharacterManager {
 		}
 		System.out.println("Returning true");
 		characters[charIndex].name = name;
-		characters[charIndex].health = d;
-		characters[charIndex].power = e;
+		characters[charIndex].health = health;
+		characters[charIndex].power = power;
 		return true;
 	}
 	

@@ -1,11 +1,11 @@
 package middleEarthApp;
 
 public class Orc extends MiddleEarthCharacter {
-
+	//Initializes an Orc
 	public Orc(String name, double health, double power) {
 		super(name,health,power);
 	}
-	
+	//Returns "Orc" for the attack method and displayInfo method.
 	@Override
 	public String getRace() {
 		return "Orc";

@@ -1,11 +1,11 @@
 package middleEarthApp;
 
 public class Dwarf extends MiddleEarthCharacter{
-
+	//Initializes a Dwarf
 	public Dwarf(String name, double health, double power) {
 		super(name,health,power);
 	}
-	
+	//Returns "Dwarf" for the attack method and displayInfo method.
 	@Override
 	public String getRace() {
 		return "Dwarf";
