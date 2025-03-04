@@ -31,6 +31,29 @@ public class CharacterManager {
 		}
 		return true;
 	}
+	//Removes a character by finding the position in the characters array to remove and then shifts all elements left at the removal point.
+	boolean deleteCharacter(MiddleEarthCharacter character) {
+		//Goes through the characters array to find the point of removal. 
+		int removalIndex = -1;
+		for(int i = 0; i < size; i++) {
+			if(character == characters[i]) {
+				removalIndex = i;
+			}
+		}
+		//Returns false if the character was not present in the manager.
+		if(removalIndex == -1) {
+			return false;
+		}
+		//Shifts elements to the left starting at the point of removal.
+		for(int i = removalIndex; i<size;i++) {
+			characters[i] = characters[i+1];
+		}
+		size--;
+		return true;
+	}
+	
+	
+	
 	//Searches the characters array for a matching name and then returns that character if the name matches. Returns null if that character is not in the array.
 	MiddleEarthCharacter getCharacter(String name) {
 		for(int i = 0; i < size; i++) {

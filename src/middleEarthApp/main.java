@@ -15,7 +15,12 @@ public class main {
 		dwarf1.attack(guy2);
 		guy2.displayInfo();
 		manager.addCharacter(guy1);
+		//manager.deleteCharacter(guy1);
 		manager.addCharacter(orc1);
+		manager.deleteCharacter(guy1);
+		
+		System.out.println("break");
+		
 		manager.addCharacter(guy2);
 		manager.addCharacter(dwarf1);
 		manager.addCharacter(wiz1);
@@ -26,9 +31,16 @@ public class main {
 		newGuy.displayInfo();
 		
 		manager.updateCharacter(newGuy, "Yes", 18.40, 18.40);
-		MiddleEarthCharacter test = manager.getCharacter("Yes");
-		test.displayInfo();
-		newGuy.displayInfo();
+		manager.displayAllCharacters();
+		manager.deleteCharacter(wiz1);
+		System.out.println("break");
+		manager.displayAllCharacters();
+		manager.addCharacter(wiz1);
+		manager.addCharacter(wiz1);
+		manager.addCharacter(wiz1);
+		manager.addCharacter(wiz1);
+		manager.deleteCharacter(dwarf1);
+		manager.displayAllCharacters();
 	}
 
 }
