@@ -1,11 +1,11 @@
 package middleEarthApp;
 import java.util.Arrays;
-//import middleEarthApp.MiddleEarthCharacter;
+
 public class CharacterManager {
 	MiddleEarthCharacter[] characters;
 	int size;
 	
-	//Adds a new character to the characters array. Increments size as characters are added. 
+	//Adds a new character to the characters array and updates the array size. The total length is doubled every time it is at capacity. 
 	boolean addCharacter(MiddleEarthCharacter c) {
 		//Returns false if passed an invalid character.
 		if(c == null) {
@@ -17,6 +17,7 @@ public class CharacterManager {
 			characters = new MiddleEarthCharacter[1];
 			characters[0] = c;
 			size++;
+			//makes the characters array into a copy of itself with double the capacity.
 			characters = Arrays.copyOf(characters, this.size*2);
 			System.out.println("Returning");
 			return true;
@@ -30,10 +31,40 @@ public class CharacterManager {
 		}
 		return true;
 	}
+	//Searches the characters array for a matching name and then returns that character if the name matches. Returns null if that character is not in the array.
+	MiddleEarthCharacter getCharacter(String name) {
+		for(int i = 0; i < size; i++) {
+			if(characters[i].name == name) {
+				return characters[i];
+			}
+		}
+		//Returns null if character is not present.
+		return null;
+	}
 	
+	boolean updateCharacter(MiddleEarthCharacter character, String name, double d, double e) {
+		int charIndex = -1;
+		for(int i = 0; i < size;i++) {
+			if(character == characters[i]) {
+				charIndex = i;
+			}
+		}
+		if(charIndex == -1) {
+			System.out.println("Returning false");
+			return false;
+		}
+		System.out.println("Returning true");
+		characters[charIndex].name = name;
+		characters[charIndex].health = d;
+		characters[charIndex].power = e;
+		return true;
+	}
 	
-	
+	//Prints all characters in the manager array. Returns if empty. 
 	void displayAllCharacters() {
+		if(characters == null || size == 0) {
+			return;
+		}
 		for(int i = 0; i < size; i++) {
 			characters[i].displayInfo();
 		}

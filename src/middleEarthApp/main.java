@@ -1,11 +1,12 @@
 package middleEarthApp;
 
-import middleEarthApp.MiddleEarthCharacter;
+
 public class main {
 	public static void main(String[] args) {
 		//For now, this is just to test other classes. Menu implementation will come later.
 		MiddleEarthCouncil council = MiddleEarthCouncil.getInstance();
 		CharacterManager manager = council.getCharacterManager();
+		//String input;
 		Human guy1 = new Human("Jack Black", 10.0, 5.5);
 		Human guy2 = new Human("Elton John", 100.4, 30.5);
 		Orc orc1 = new Orc("Guy", 5.0, 5.0);
@@ -20,6 +21,14 @@ public class main {
 		manager.addCharacter(wiz1);
 		manager.displayAllCharacters();
 		
+		MiddleEarthCharacter newGuy = manager.getCharacter("Howl");
+		guy1.attack(newGuy);
+		newGuy.displayInfo();
+		
+		manager.updateCharacter(newGuy, "Yes", 18.40, 18.40);
+		MiddleEarthCharacter test = manager.getCharacter("Yes");
+		test.displayInfo();
+		newGuy.displayInfo();
 	}
 
 }
