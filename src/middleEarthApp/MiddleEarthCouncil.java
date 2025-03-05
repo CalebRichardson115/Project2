@@ -1,8 +1,5 @@
 package middleEarthApp;
-/*
- * @author Caleb Richardson
- * @version 3-4-2025
- */
+
 //Singleton class that allows for one instance of a character manager to exist.
 public class MiddleEarthCouncil {
 	private static MiddleEarthCouncil instance = null;

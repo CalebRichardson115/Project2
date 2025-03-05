@@ -1,5 +1,5 @@
 package middleEarthApp;
-
+//Wizard is a subclass of MiddleEarthCharacter
 public class Wizard extends MiddleEarthCharacter {
 	//Initializes a Wizard
 	public Wizard(String name, double health, double power) {
@@ -10,7 +10,7 @@ public class Wizard extends MiddleEarthCharacter {
 	public String getRace() {
 		return "Wizard";
 	}
-	
+	//Attack logic for Wizard subclass. Returns false (zero damage) for Wizard and Human targets, 1.5 damage for Dwarf targets, and regular damage for other classes.
 	@Override
 	public Boolean attack(MiddleEarthCharacter target) {
 		if(target.getRace() == "Wizard" || target.getRace() == "Human") {

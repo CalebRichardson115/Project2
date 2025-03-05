@@ -1,10 +1,12 @@
 package middleEarthApp;
-import java.util.Arrays;
-
+/*
+ * CharacterManager is a an array that allows for the management of multiple
+ * MiddleEarthCharacters with methods to add new characters, delete them, print them all,
+ * retrieve them, and update their values. Allows for dynamic array resizing once capacity is reached.
+ */
 public class CharacterManager {
 	MiddleEarthCharacter[] characters;
 	int size;
-	
 	//Adds a new character to the characters array and updates the array size. The total length is doubled every time it is at capacity. 
 	boolean addCharacter(MiddleEarthCharacter c) {
 		//Returns false if passed an invalid character.
@@ -13,21 +15,26 @@ public class CharacterManager {
 		}
 		//Initializes the array if it is the first element to be added and sets the initial length to be 2.
 		if(characters == null || size == 0) {
-			System.out.println("in");
 			characters = new MiddleEarthCharacter[1];
 			characters[0] = c;
 			size++;
 			//makes the characters array into a copy of itself with double the capacity.
-			characters = Arrays.copyOf(characters, this.size*2);
-			System.out.println("Returning");
+			MiddleEarthCharacter[] copy = new MiddleEarthCharacter[size*2];
+			for(int i = 0; i < size;i++) {
+				copy[i] = characters[i];
+			}
+			characters = copy;
 			return true;
 		}
-		System.out.println("Length: " + this.characters.length);
-		System.out.println("Num of elements: " + this.size);
 		characters[size] = c;
 		size++;
+		//Resizes the array once the size reaches capacity by copying the array and doubling the size
 		if(size >= characters.length) {
-			characters = Arrays.copyOf(characters, size*2);
+			MiddleEarthCharacter[] copy = new MiddleEarthCharacter[size*2];
+			for(int i = 0; i < size;i++) {
+				copy[i] = characters[i];
+			}
+			characters = copy;
 		}
 		return true;
 	}
@@ -51,21 +58,17 @@ public class CharacterManager {
 		size--;
 		return true;
 	}
-	
-	
-	
 	//Searches the characters array for a matching name and then returns that character if the name matches. Returns null if that character is not in the array.
 	MiddleEarthCharacter getCharacter(String name) {
 		for(int i = 0; i < size; i++) {
 			if(characters[i].name.equals(name)) {
-				System.out.println("Found");
 				return characters[i];
 			}
 		}
 		//Returns null if character is not present.
 		return null;
 	}
-	
+	//Changes the name, health, and attack power of a character upon locating it in the characters array.
 	boolean updateCharacter(MiddleEarthCharacter character, String name, double health, double power) {
 		int charIndex = -1;
 		for(int i = 0; i < size;i++) {
@@ -73,11 +76,10 @@ public class CharacterManager {
 				charIndex = i;
 			}
 		}
+		//Returns false if the character is not found.
 		if(charIndex == -1) {
-			System.out.println("Returning false");
 			return false;
 		}
-		System.out.println("Returning true");
 		characters[charIndex].name = name;
 		characters[charIndex].health = health;
 		characters[charIndex].power = power;

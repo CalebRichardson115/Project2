@@ -1,10 +1,8 @@
 package middleEarthApp;
 import java.util.Scanner;
-/*
- * @author Caleb Richardson
- * @version 3-4-2025
- */
-public class main {
+//Menu-driven interface for the Middle Earth App project.
+//Allows the user to utilize the app until they decide to close it.
+public class MiddleEarthApp {
 	//
 	public static void main(String[] args) {
 		//Initializes the scanner for input and gets the single instance of the character manager.
@@ -13,7 +11,16 @@ public class main {
 		CharacterManager manager = council.getCharacterManager();
 		//boolean that keeps the loop going so long as the user has not decided to exit the app.
 		boolean menuActive = true;
+		//Explains the rules of the game.
 		System.out.println("Welcome to the Middle Earth App.");
+		System.out.println("Here, you can make, destroy, and update all sorts of characters as well as making them battle one another.");
+		System.out.println("And the best part is that you set the stage, all characters are of your own creation and are at your full discretion.");
+		System.out.println("The attack rules are as follows:");
+		System.out.println("Each character race is strong against another while also weak to another. No character of the same race may strike its own kin.");
+		System.out.println("Human characters are strong against Wizards but weak to Orcs while Orcs are strong against humans but weak to Elves.");
+		System.out.println("Elves are strong against Orcs but weak to Dwarves while Dwarves are strong against Eleves but weak to Wizards.");
+		System.out.println("Wizards are good against Dwarves but weak to Humans.");
+		System.out.println("Every character that attacks a race it is strong against does 1.5x damage against it.");
 		//Active until the user inputs "Q"
 		while(menuActive == true) {
 			System.out.println("Enter the following commands to manage your characters.");
@@ -27,8 +34,17 @@ public class main {
 				   System.out.println("Enter the new character's name: ");
 				   String name = input.nextLine();
 				   System.out.println("Now enter the character's attack power in the form of a double: ");
+				   while(!input.hasNextDouble()) {
+					   System.out.println("Input a valid double (i.e. 10.5)");
+					   input.nextLine();
+				   }
 				   double power = input.nextDouble();
 				   System.out.println("Now enter the character's total health points in the form of a double: ");
+				   //Repeated code block to ensure that only a double can be inputed to avoid errors.
+				   while(!input.hasNextDouble()) {
+					   System.out.println("Input a valid double (i.e. 10.5)");
+					   input.nextLine();
+				   }
 				   double health = input.nextDouble();
 				   System.out.println("What race will this character be? The options are: Human, Orc, Dwarf, Wizard, and Elf");
 				   System.out.println("Enter your character's race: ");
@@ -68,16 +84,32 @@ public class main {
 				System.out.println("Enter the new name for the character: ");
 				String newName = input.nextLine();
 				System.out.println("Now enter the new attack power for the character: ");
+				while(!input.hasNextDouble()) {
+					   System.out.println("Input a valid double (i.e. 10.5)");
+					   input.nextLine();
+				   }
 				double newPower = input.nextDouble();
 				System.out.println("Now enter the new total health for the character: ");
+				while(!input.hasNextDouble()) {
+					   System.out.println("Input a valid double (i.e. 10.5)");
+					   input.nextLine();
+				   }
 				double newHealth = input.nextDouble();
-				manager.updateCharacter(manager.getCharacter(updateName), newName, newHealth, newPower);
+				boolean updateBoolean = manager.updateCharacter(manager.getCharacter(updateName), newName, newHealth, newPower);
+				if(!updateBoolean) {
+					System.out.println("Update failed");
+				}
 				break;
 			//deletes a character via user input if it is a valid character.
 			case "D":
 				System.out.println("Enter the name of the character you wish to delete: ");
 				String deletedCharacter = input.nextLine();
-				manager.deleteCharacter(manager.getCharacter(deletedCharacter));
+				boolean deleteBool = manager.deleteCharacter(manager.getCharacter(deletedCharacter));
+				if(!deleteBool) {
+					System.out.println("Deletion failed.");
+					break;
+				}
+				System.out.println("Deletion successful.");
 				break;
 			//Allows any character to attack any other character based on user inputs.
 			case "A":
@@ -87,6 +119,11 @@ public class main {
 				String attackee = input.nextLine();
 				MiddleEarthCharacter attackingCharacter = manager.getCharacter(attacker);
 				MiddleEarthCharacter attackedCharacter = manager.getCharacter(attackee);
+				//Catches invalid inputs so that the attack does not reference null.
+				if(attackingCharacter == null || attackedCharacter == null) {
+					System.out.println("Invalid characters. Try again.");
+					break;
+				}
 				boolean attackBoolean = attackingCharacter.attack(attackedCharacter);
 				if(!attackBoolean) {
 					System.out.println("The attack did not go through or did zero damage.");
@@ -95,7 +132,7 @@ public class main {
 					System.out.println("Attack successful");
 				}
 				break;
-			//Sets the boolean that keeps the loop going to false if the use inputs Q.
+			//Sets the boolean that keeps the app up to false if the user inputs Q.
 			case "Q":
 				   System.out.println("App terminated.");
 				   menuActive = false;

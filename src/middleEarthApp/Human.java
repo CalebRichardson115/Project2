@@ -1,5 +1,5 @@
 package middleEarthApp;
-
+//Human is a subclass of MiddleEarthCharacter
 public class Human extends MiddleEarthCharacter {
 	//Initializes a Human. 
 	public Human(String name, double health, double power) {

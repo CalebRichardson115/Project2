@@ -1,5 +1,5 @@
 package middleEarthApp;
-
+//Elf is a subclass of MiddleEarthCharacter
 public class Elf extends MiddleEarthCharacter{
 	//Initializes an Elf
 	public Elf(String name, double health, double power) {
@@ -10,6 +10,7 @@ public class Elf extends MiddleEarthCharacter{
 	public String getRace() {
 		return "Elf";
 	}
+	//Attack logic for Elf subclass. Returns false (zero damage) for Elf and Dwarf targets, 1.5 damage for Orc targets, and regular damage for other classes.
 	@Override
 	public Boolean attack(MiddleEarthCharacter target) {
 		if(target.getRace() == "Elf" || target.getRace() == "Dwarf") {
