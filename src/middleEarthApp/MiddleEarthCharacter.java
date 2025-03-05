@@ -1,8 +1,10 @@
 package middleEarthApp;
-
+//Parent class for character subclasses.
 public abstract class MiddleEarthCharacter {
+	//Variables that make up a character/
 	String name;
 	double health;
+	//Refers to attack power.
 	double power;
 	//Constructor for any MiddleEarthCharacter
 	public MiddleEarthCharacter(String name, double health, double power) {

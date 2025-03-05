@@ -3,7 +3,7 @@ import java.util.Scanner;
 //Menu-driven interface for the Middle Earth App project.
 //Allows the user to utilize the app until they decide to close it.
 public class MiddleEarthApp {
-	//
+	//main method for app execution.
 	public static void main(String[] args) {
 		//Initializes the scanner for input and gets the single instance of the character manager.
 		Scanner input = new Scanner(System.in);
